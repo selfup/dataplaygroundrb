@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV['DATAPLAYGROUNDRB_DATABASE_USERNAME'] %>
+  password: <%= ENV['DATAPLAYGROUNDRB_DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATAPLAYGROUNDRB_DATABASE_HOST'] %>
+  port: <%= ENV['DATAPLAYGROUNDRB_DATABASE_PORT'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: dataplaygroundrb_development
+
+test:
+  <<: *default
+  database: dataplaygroundrb_test
+
+production:
+  <<: *default
+  database: dataplaygroundrb_production
